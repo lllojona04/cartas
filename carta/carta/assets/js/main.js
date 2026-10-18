@@ -1,28 +1,54 @@
-$(document).ready(function () {
-    // Ocultamos las cortinas al cargar la página
-    $('.left-curtain').css('width', '0%');
-    $('.right-curtain').css('width', '0%');
 
-    $('.valentines-day').click(function () {
-        // Animación de caída para el sobre
-        $('.envelope').css({ 
-            'animation': 'fall 3s linear 1', 
-            '-webkit-animation': 'fall 3s linear 1' 
+$(document).ready(function () {
+    // Ocultar las cortinas al cargar
+    $('.left-curtain, .right-curtain').css('width', '0%');
+
+    // Evitar abrir la carta varias veces seguidas
+    let abriendo = false;
+
+    $('.valentines-day').on('click', function () {
+        if (abriendo) return;
+        abriendo = true;
+
+        const $sobre = $('.envelope');
+        const $tarjeta = $('#card');
+
+        // Animación de caída del sobre
+        $sobre.css({
+            'animation': 'fall 1.5s linear 1',
+            '-webkit-animation': 'fall 1.5s linear 1'
         });
 
-        $('.envelope').fadeOut(800, function () {
-            // Ocultar los elementos del sobre
+        $sobre.fadeOut(800, function () {
+            // Ocultar las partes del sobre
             $('.valentines-day .heart, .valentines-day .text, .valentines-day .front').hide();
 
-            // Desplegar la carta con animación ondulante/escalado
-            $('#card').css({ 'visibility': 'visible', 'opacity': 0, 'transform': 'scale(0.1)' });
-            $('#card').animate({ 'opacity': 1 }, {
-                duration: 1000, 
-                step: function (now, fx) {
-                    var scale = 1 + Math.sin(now * Math.PI) * 0.1;
-                    $(this).css('transform', 'scale(' + scale + ')');
-                }
+            // Mostrar la carta
+            $tarjeta.css({
+                'visibility': 'visible',
+                'display': 'block',
+                'opacity': 0,
+                'transform': 'scale(0.85)',
+                'transform-origin': 'center center'
             });
+
+            // Animación suave de apertura
+            $tarjeta.stop(true, true).animate(
+                { opacity: 1 },
+                {
+                    duration: 700,
+                    step: function (now) {
+                        const escala = 0.85 + (now * 0.15);
+                        $(this).css('transform', 'scale(' + escala + ')');
+                    },
+                    complete: function () {
+                        $(this).css({
+                            'transform': 'scale(1)',
+                            'opacity': 1
+                        });
+                    }
+                }
+            );
         });
     });
 });
