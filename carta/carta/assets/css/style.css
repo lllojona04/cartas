@@ -1,0 +1,236 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap");
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-family: "Caveat", cursive;
+  background-color: #f1e3d3;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* --- CENTRADO PERFECTO Y ANCHO AMPLIADO PARA QUE ENTRE TODO --- */
+#card {
+  width: 860px;
+  height: 480px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -430px;
+  margin-top: -240px;
+  display: flex;
+  visibility: hidden;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: transparent;
+  z-index: 100;
+}
+
+/* --- LAS DOS SOLAPAS RECTAS Y SIMÉTRICAS --- */
+.side {
+  height: 100%;
+  width: 50%;
+  padding: 20px 25px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: none !important;
+}
+
+.side.one {
+  background: #ffffff;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  border-right: 1px solid #e0e0e0;
+}
+
+.side.two {
+  background: #ffffff;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  justify-content: flex-start;
+  padding-top: 15px;
+}
+
+/* --- TEXTOS NÍTIDOS Y COMPACTOS --- */
+#card h2 {
+  font-size: 1.9em;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #087a3c;
+  text-align: center;
+}
+
+#card p {
+  font-size: 1.15em;
+  font-weight: 500;
+  text-align: justify;
+  margin: 0 0 5px 0;
+  line-height: 1.25;
+  color: #2c3e50;
+}
+
+.firma {
+  margin-top: 6px;
+  font-size: 1.05em;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+/* --- ESTILOS DEL SOBRE Y CORAZÓN VERDIBLANCO --- */
+.valentines-day {
+  position: relative;
+  cursor: pointer;
+}
+
+.envelope {
+  position: relative;
+  filter: drop-shadow(0 0 25px rgba(0, 0, 0, 0.3));
+}
+
+.envelope:before {
+  content: "";
+  position: absolute;
+  width: 254px;
+  height: 254px;
+  background-color: #a3e4d7; 
+  transform: rotate(-45deg);
+  border-radius: 0 15px 0 0;
+  left: -37px;
+  top: -82px;
+}
+
+.envelope:after {
+  content: "";
+  position: absolute;
+  background-color: #27ae60;
+  width: 360px;
+  height: 225px;
+  left: -90px;
+  top: 45px;
+}
+
+.heart {
+  position: relative;
+  background-color: #087a3c;
+  display: inline-block;
+  height: 180px;
+  top: 50px;
+  left: 0;
+  transform: rotate(-45deg);
+  width: 180px;
+  filter: drop-shadow(0 -10px 25px rgba(0, 0, 0, 0.3));
+  transition: 0.5s;
+}
+
+.heart:before,
+.heart:after {
+  content: "";
+  background-color: #087a3c;
+  border-radius: 50%;
+  height: 180px;
+  width: 180px;
+  position: absolute;
+}
+
+.heart:before {
+  top: -100px;
+  left: 0;
+}
+
+.heart:after {
+  left: 100px;
+  top: 0;
+}
+
+.front {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-right: 190px solid #d4efdf;
+  border-top: 113px solid transparent;
+  border-bottom: 113px solid transparent;
+  top: 44px;
+  left: 80px;
+  z-index: 4;
+}
+
+.front:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-left: 190px solid #d4efdf;
+  border-top: 113px solid transparent;
+  border-bottom: 113px solid transparent;
+  top: -113px;
+  left: -170px;
+}
+
+.front:after {
+  width: 0;
+  height: 0;
+  position: absolute;
+  content: "";
+  border-bottom: 150px solid #e8f8f5;
+  border-right: 180px solid transparent;
+  border-left: 180px solid transparent;
+  top: -36px;
+  left: -170px;
+}
+
+.text {
+  position: absolute;
+  font-family: arial;
+  letter-spacing: 3.5px;
+  text-align: center;
+  color: white;
+  z-index: 2;
+  top: 80px;
+  left: 15px;
+  transition: 0.5s;
+}
+
+.valentines-day:hover .heart {
+  transform: translateY(-50px) rotate(-45deg);
+}
+
+.valentines-day:hover .text {
+  transform: translateY(-50px);
+}
+
+/* --- ADAPTACIÓN MÓVIL --- */
+@media only screen and (max-width: 768px) {
+  #card {
+    width: 92%;
+    height: auto;
+    max-height: 85vh;
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    margin-left: -46%;
+    margin-top: -40vh;
+  }
+
+  .side.one {
+    display: none !important;
+  }
+
+  .side.two {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 15px !important;
+  }
+
+  #card p {
+    font-size: 1.15em !important;
+  }
+}
